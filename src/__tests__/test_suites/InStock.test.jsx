@@ -7,11 +7,11 @@ describe('3rd Deliverable', () => {
   test('marks a plant as sold out', async () => {
     global.setFetchResponse(global.basePlants)
 
-    const { findAllByTestId, findByText } = render(<App />);
+    const { findAllByTestId, findByText, debug } = render(<App />);
 
     // Get all plant items
     const plantItems = await findAllByTestId('plant-item');
-    expect(plantItems).toHaveLength(basePlants.length);
+    expect(plantItems).toHaveLength(global.basePlants.length);
 
     // Select the first plant item
     const firstPlantItem = plantItems[0];
@@ -19,6 +19,9 @@ describe('3rd Deliverable', () => {
     // Find and click the "In Stock" button within the first plant item
     const inStockButton = within(firstPlantItem).getByText('In Stock');
     fireEvent.click(inStockButton);
+
+    // Debug the DOM after click
+    debug();
 
     // Wait for the "Out of Stock" button to appear and verify its presence
     const outOfStockButton = await findByText('Out of Stock');

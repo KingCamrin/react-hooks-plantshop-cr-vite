@@ -8,15 +8,17 @@ const [name, setName] = useState("");
 const[image, setImage] = useState("");
 const [price, setPrice] = useState("");
 
-const newPlant = {
-  name: name,
-  image: image,
-  price: parseFloat(price)
-};
-
   function handleSubmit(e) {
     e.preventDefault();
-    onAddPlant(newPlant)
+    const newPlant = {
+      name: name,
+      image: image,
+      price: price  // Keep as string to match test expectations
+    };
+    onAddPlant(newPlant);
+    setName("");
+    setImage("");
+    setPrice("");
   }
   return (
     <div className="new-plant-form">
@@ -24,7 +26,7 @@ const newPlant = {
       <form onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Plant name" value={name} onChange={(e) => setName(e.target.value)} />
         <input type="text" name="image" placeholder="Image URL" value={image} onChange={(e) => setImage(e.target.value)} />
-        <input type="number" name="price" step="0.01" placeholder="Price" value={price} onChange={(e) => (e.target.value)}; />
+        <input type="number" name="price" step="0.01" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
         <button type="submit">Add Plant</button>
       </form>
     </div>
