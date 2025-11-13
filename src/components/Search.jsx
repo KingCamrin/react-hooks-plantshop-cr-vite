@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function Search() {
   return (
     <div className="searchbar">
@@ -15,3 +16,5 @@ function Search() {
 }
 
 export default Search;
+
+
